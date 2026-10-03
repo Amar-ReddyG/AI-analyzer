@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>CareerCopilot | Dashboard</title>
+
+    <link rel="stylesheet" href="dashboard.css">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+</head>
+
+<body>
+
+    <!-- ========================================= -->
+    <!-- APP CONTAINER -->
+    <!-- ========================================= -->
+
+    <div class="app">
+
+        <!-- ===================================== -->
+        <!-- SIDEBAR -->
+        <!-- ===================================== -->
+
+        <aside class="sidebar" id="sidebar">
+
+            <div class="sidebar-header">
+
+                <div class="brand">
+                    <div class="brand-icon">
+                        CC
+                    </div>
+
+                    <div>
+                        <h2>CareerCopilot</h2>
+                        <span>AI Career Assistant</span>
+                    </div>
+                </div>
+
+                <button
+                    class="close-sidebar"
+                    onclick="toggleSidebar()"
+                    aria-label="Close menu"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <!-- MAIN NAVIGATION -->
+
+            <nav class="navigation">
+
+                <p class="nav-label">MAIN</p>
+
+                <button
+                    class="nav-item active"
+                    onclick="showSection('overview', this)"
+                >
+                    <span class="nav-icon">⌂</span>
+                    <span>Overview</span>
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    onclick="showSection('resume', this)"
+                >
+                    <span class="nav-icon">📄</span>
+                    <span>My Resume</span>
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    onclick="showSection('jobs', this)"
+                >
+                    <span class="nav-icon">🎯</span>
+                    <span>Job Analysis</span>
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    onclick="showSection('skills', this)"
+                >
+                    <span class="nav-icon">🧠</span>
+                    <span>Skill Gaps</span>
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    onclick="showSection('learning', this)"
+                >
+                    <span class="nav-icon">🎓</span>
+                    <span>Learning Roadmap</span>
+                </button>
+
+
+                <p class="nav-label">CAREER</p>
+
+
+                <button
+                    class="nav-item"
+                    onclick="showSection('applications', this)"
+                >
+                    <span class="nav-icon">💼</span>
+                    <span>Applications</span>
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    onclick="showSection('interview', this)"
+                >
+                    <span class="nav-icon">🎤</span>
+                    <span>Interview Prep</span>
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    onclick="showSection('copilot', this)"
+                >
+                    <span class="nav-icon">🤖</span>
+                    <span>AI Career Copilot</span>
+                </button>
+
+
+                <p class="nav-label">ACCOUNT</p>
+
+
+                <button
+                    class="nav-item"
+                    onclick="showSection('profile', this)"
+                >
+                    <span class="nav-icon">👤</span>
+                    <span>My Profile</span>
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    onclick="showSection('settings', this)"
+                >
+                    <span class="nav-icon">⚙️</span>
+                    <span>Settings</span>
+                </button>
+
+            </nav>
+
+
+            <!-- SIDEBAR USER -->
+
+            <div class="sidebar-user">
+
+                <div class="user-avatar" id="sidebarAvatar">
+                    U
+                </div>
+
+                <div class="user-info">
+
+                    <strong id="sidebarUserName">
+                        Loading...
+                    </strong>
+
+                    <span id="sidebarUserEmail">
+                        Loading...
+                    </span>
+
+                </div>
+
+                <button
+                    class="logout-button"
+                    onclick="logout()"
+                    title="Logout"
+                >
+                    ↪
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- ===================================== -->
+        <!-- MAIN CONTENT -->
+        <!-- ===================================== -->
+
+        <main class="main-content">
+
+
+            <!-- TOP BAR -->
+
+            <header class="topbar">
+
+                <button
+                    class="menu-button"
+                    onclick="toggleSidebar()"
+                    aria-label="Open menu"
+                >
+                    ☰
+                </button>
+
+
+                <div class="topbar-search">
+
+                    <span>⌕</span>
+
+                    <input
+                        type="text"
+                        placeholder="Search your career workspace..."
+                    >
+
+                </div>
+
+
+                <div class="topbar-actions">
+
+                    <button
+                        class="notification-button"
+                        title="Notifications"
+                    >
+                        🔔
+                        <span class="notification-dot"></span>
+                    </button>
+
+
+                    <button
+                        class="top-profile"
+                        onclick="showSection('profile')"
+                    >
+
+                        <div
+                            class="user-avatar small"
+                            id="topAvatar"
+                        >
+                            U
+                        </div>
+
+                        <span id="topUserName">
+                            User
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </header>
+
+
+            <!-- ================================= -->
+            <!-- PAGE CONTENT -->
+            <!-- ================================= -->
+
+            <div class="page-content">
+
+
+                <!-- ================================= -->
+                <!-- OVERVIEW SECTION -->
+                <!-- ================================= -->
+
+                <section
+                    id="overview"
+                    class="dashboard-section active-section"
+                >
+
+                    <div class="welcome-area">
+
+                        <div>
+
+                            <p class="eyebrow">
+                                YOUR CAREER WORKSPACE
+                            </p>
+
+                            <h1>
+                                Welcome back,
+                                <span id="welcomeName">
+                                    there
+                                </span> 👋
+                            </h1>
+
+                            <p class="welcome-description">
+                                Your AI-powered career workspace is ready.
+                                Track your resume, jobs, skills and career progress
+                                from one place.
+                            </p>
+
+                        </div>
+
+
+                        <button
+                            class="primary-button"
+                            onclick="showSection('jobs')"
+                        >
+                            + Analyze a Job
+                        </button>
+
+                    </div>
+
+
+                    <!-- QUICK STATS -->
+
+                    <div class="stats-grid">
+
+                        <div class="stat-card">
+
+                            <div class="stat-icon purple">
+                                📄
+                            </div>
+
+                            <div>
+
+                                <span class="stat-label">
+                                    Resume Status
+                                </span>
+
+                                <strong id="resumeStatus">
+                                    Not uploaded
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="stat-card">
+
+                            <div class="stat-icon blue">
+                                🎯
+                            </div>
+
+                            <div>
+
+                                <span class="stat-label">
+                                    Jobs Analyzed
+                                </span>
+
+                                <strong id="jobsAnalyzed">
+                                    0
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="stat-card">
+
+                            <div class="stat-icon green">
+                                🧠
+                            </div>
+
+                            <div>
+
+                                <span class="stat-label">
+                                    Skills Identified
+                                </span>
+
+                                <strong id="skillsIdentified">
+                                    0
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="stat-card">
+
+                            <div class="stat-icon orange">
+                                💼
+                            </div>
+
+                            <div>
+
+                                <span class="stat-label">
+                                    Applications
+                                </span>
+
+                                <strong id="applicationsCount">
+                                    0
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- MAIN DASHBOARD GRID -->
+
+                    <div class="dashboard-grid">
+
+
+                        <!-- RESUME CARD -->
+
+                        <div class="dashboard-card large-card">
+
+                            <div class="card-header">
+
+                                <div>
+
+                                    <span class="card-kicker">
+                                        RESUME
+                                    </span>
+
+                                    <h2>
+                                        Your Career Profile
+                                    </h2>
+
+                                </div>
+
+                                <button
+                                    class="text-button"
+                                    onclick="showSection('resume')"
+                                >
+                                    Manage →
+                                </button>
+
+                            </div>
+
+
+                            <div class="resume-placeholder">
+
+                                <div class="document-icon">
+                                    📄
+                                </div>
+
+                                <div>
+
+                                    <h3>
+                                        Upload your resume
+                                    </h3>
+
+                                    <p>
+                                        Add your latest resume to unlock
+                                        AI-powered job matching, skill analysis
+                                        and personalized recommendations.
+                                    </p>
+
+                                </div>
+
+                                <button
+                                    class="secondary-button"
+                                    onclick="showSection('resume')"
+                                >
+                                    Upload Resume
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- CAREER SCORE -->
+
+                        <div class="dashboard-card score-card">
+
+                            <div class="card-header">
+
+                                <div>
+
+                                    <span class="card-kicker">
+                                        CAREER INSIGHT
+                                    </span>
+
+                                    <h2>
+                                        Alignment
+                                    </h2>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="score-container">
+
+                                <div class="score-circle">
+
+                                    <span id="alignmentScore">
+                                        --
+                                    </span>
+
+                                </div>
+
+                                <h3>
+                                    Resume–Job Alignment
+                                </h3>
+
+                                <p>
+                                    Analyze a job to see how well your
+                                    current profile aligns with it.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- RECENT ACTIVITY -->
+
+                        <div class="dashboard-card large-card">
+
+                            <div class="card-header">
+
+                                <div>
+
+                                    <span class="card-kicker">
+                                        ACTIVITY
+                                    </span>
+
+                                    <h2>
+                                        Recent Activity
+                                    </h2>
+
+                                </div>
+
+                                <button
+                                    class="text-button"
+                                    onclick="showSection('applications')"
+                                >
+                                    View all →
+                                </button>
+
+                            </div>
+
+
+                            <div
+                                class="activity-list"
+                                id="activityList"
+                            >
+
+                                <div class="empty-activity">
+
+                                    <div>
+                                        🕘
+                                    </div>
+
+                                    <p>
+                                        Your recent career activity
+                                        will appear here.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- QUICK ACTIONS -->
+
+                        <div class="dashboard-card">
+
+                            <div class="card-header">
+
+                                <div>
+
+                                    <span class="card-kicker">
+                                        QUICK ACTIONS
+                                    </span>
+
+                                    <h2>
+                                        Get Started
+                                    </h2>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="quick-actions">
+
+                                <button
+                                    onclick="showSection('resume')"
+                                >
+                                    <span>📄</span>
+                                    <div>
+                                        <strong>
+                                            Manage Resume
+                                        </strong>
+                                        <small>
+                                            Upload or update
+                                        </small>
+                                    </div>
+                                </button>
+
+
+                                <button
+                                    onclick="showSection('jobs')"
+                                >
+                                    <span>🎯</span>
+                                    <div>
+                                        <strong>
+                                            Analyze Job
+                                        </strong>
+                                        <small>
+                                            Check your alignment
+                                        </small>
+                                    </div>
+                                </button>
+
+
+                                <button
+                                    onclick="showSection('skills')"
+                                >
+                                    <span>🧠</span>
+                                    <div>
+                                        <strong>
+                                            Find Skill Gaps
+                                        </strong>
+                                        <small>
+                                            Discover what to improve
+                                        </small>
+                                    </div>
+                                </button>
+
+
+                                <button
+                                    onclick="showSection('interview')"
+                                >
+                                    <span>🎤</span>
+                                    <div>
+                                        <strong>
+                                            Practice Interview
+                                        </strong>
+                                        <small>
+                                            Prepare for your next role
+                                        </small>
+                                    </div>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ================================= -->
+                <!-- RESUME SECTION -->
+                <!-- ================================= -->
+
+                <section
+                    id="resume"
+                    class="dashboard-section"
+                >
+
+                    <div class="section-heading">
+
+                        <div>
+
+                            <p class="eyebrow">
+                                RESUME MANAGEMENT
+                            </p>
+
+                            <h1>
+                                My Resume
+                            </h1>
+
+                            <p>
+                                Manage the resume CareerCopilot uses
+                                for career analysis.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="feature-placeholder">
+
+                        <div class="feature-icon">
+                            📄
+                        </div>
+
+                        <h2>
+                            Resume Manager
+                        </h2>
+
+                        <p>
+                            Upload your resume, extract its content,
+                            manage versions and prepare it for
+                            AI-powered analysis.
+                        </p>
+
+                        <button class="primary-button">
+                            Upload Resume
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ================================= -->
+                <!-- JOB ANALYSIS -->
+                <!-- ================================= -->
+
+                <section
+                    id="jobs"
+                    class="dashboard-section"
+                >
+
+                    <div class="section-heading">
+
+                        <div>
+
+                            <p class="eyebrow">
+                                JOB INTELLIGENCE
+                            </p>
+
+                            <h1>
+                                Analyze a Job
+                            </h1>
+
+                            <p>
+                                Compare your resume against a job description
+                                and discover where you stand.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="feature-placeholder">
+
+                        <div class="feature-icon">
+                            🎯
+                        </div>
+
+                        <h2>
+                            Resume–Job Analysis
+                        </h2>
+
+                        <p>
+                            Paste a job description to identify matching
+                            skills, missing skills, important keywords and
+                            areas where your resume could be stronger.
+                        </p>
+
+                        <button class="primary-button">
+                            Start Analysis
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ================================= -->
+                <!-- SKILLS -->
+                <!-- ================================= -->
+
+                <section
+                    id="skills"
+                    class="dashboard-section"
+                >
+
+                    <div class="section-heading">
+
+                        <div>
+
+                            <p class="eyebrow">
+                                SKILL INTELLIGENCE
+                            </p>
+
+                            <h1>
+                                Skill Gaps
+                            </h1>
+
+                            <p>
+                                Understand the skills you already demonstrate
+                                and the skills you may need to develop.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="feature-placeholder">
+
+                        <div class="feature-icon">
+                            🧠
+                        </div>
+
+                        <h2>
+                            Skill Gap Analysis
+                        </h2>
+
+                        <p>
+                            CareerCopilot will compare your demonstrated
+                            skills with the requirements of your target jobs.
+                        </p>
+
+                        <button class="primary-button">
+                            Analyze Skills
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ================================= -->
+                <!-- LEARNING -->
+                <!-- ================================= -->
+
+                <section
+                    id="learning"
+                    class="dashboard-section"
+                >
+
+                    <div class="section-heading">
+
+                        <div>
+
+                            <p class="eyebrow">
+                                CAREER DEVELOPMENT
+                            </p>
+
+                            <h1>
+                                Learning Roadmap
+                            </h1>
+
+                            <p>
+                                Turn identified skill gaps into an actionable
+                                learning plan.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="feature-placeholder">
+
+                        <div class="feature-icon">
+                            🎓
+                        </div>
+
+                        <h2>
+                            Personalized Learning
+                        </h2>
+
+                        <p>
+                            Your roadmap will eventually recommend topics,
+                            projects and learning priorities based on
+                            your target career.
+                        </p>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ================================= -->
+                <!-- APPLICATIONS -->
+                <!-- ================================= -->
+
+                <section
+                    id="applications"
+                    class="dashboard-section"
+                >
+
+                    <div class="section-heading">
+
+                        <div>
+
+                            <p class="eyebrow">
+                                JOB SEARCH
+                            </p>
+
+                            <h1>
+                                Applications
+                            </h1>
+
+                            <p>
+                                Keep track of the opportunities you are
+                                evaluating and applying for.
+                            </p>
+
+                        </div>
+
+                        <button class="primary-button">
+                            + Add Application
+                        </button>
+
+                    </div>
+
+
+                    <div class="empty-state">
+
+                        <div>
+                            💼
+                        </div>
+
+                        <h2>
+                            No applications yet
+                        </h2>
+
+                        <p>
+                            Jobs you track will appear here.
+                        </p>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ================================= -->
+                <!-- INTERVIEW -->
+                <!-- ================================= -->
+
+                <section
+                    id="interview"
+                    class="dashboard-section"
+                >
+
+                    <div class="section-heading">
+
+                        <div>
+
+                            <p class="eyebrow">
+                                INTERVIEW PREPARATION
+                            </p>
+
+                            <h1>
+                                Interview Prep
+                            </h1>
+
+                            <p>
+                                Prepare for interviews using your resume
+                                and the requirements of your target role.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="feature-placeholder">
+
+                        <div class="feature-icon">
+                            🎤
+                        </div>
+
+                        <h2>
+                            AI Interview Coach
+                        </h2>
+
+                        <p>
+                            Practice role-specific questions, improve your
+                            answers and identify areas to prepare before
+                            your interview.
+                        </p>
+
+                        <button class="primary-button">
+                            Start Practice
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ================================= -->
+                <!-- AI COPILOT -->
+                <!-- ================================= -->
+
+                <section
+                    id="copilot"
+                    class="dashboard-section"
+                >
+
+                    <div class="section-heading">
+
+                        <div>
+
+                            <p class="eyebrow">
+                                AI ASSISTANT
+                            </p>
+
+                            <h1>
+                                AI Career Copilot
+                            </h1>
+
+                            <p>
+                                Ask questions about your career, resume,
+                                skills and job search.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="copilot-placeholder">
+
+                        <div class="copilot-icon">
+                            🤖
+                        </div>
+
+                        <h2>
+                            Your Career Copilot
+                        </h2>
+
+                        <p>
+                            The AI career chat will live here. You will be
+                            able to ask questions and get recommendations
+                            grounded in your career information.
+                        </p>
+
+                        <div class="chat-preview">
+
+                            <span>
+                                Try asking:
+                            </span>
+
+                            <p>
+                                "What skills should I focus on for my target role?"
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ================================= -->
+                <!-- PROFILE -->
+                <!-- ================================= -->
+
+                <section
+                    id="profile"
+                    class="dashboard-section"
+                >
+
+                    <div class="section-heading">
+
+                        <div>
+
+                            <p class="eyebrow">
+                                ACCOUNT
+                            </p>
+
+                            <h1>
+                                My Profile
+                            </h1>
+
+                            <p>
+                                Manage your career profile and account
+                                information.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="profile-card">
+
+                        <div class="profile-header">
+
+                            <div
+                                class="profile-avatar"
+                                id="profileAvatar"
+                            >
+                                U
+                            </div>
+
+                            <div>
+
+                                <h2 id="profileName">
+                                    Loading...
+                                </h2>
+
+                                <p id="profileEmail">
+                                    Loading...
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="profile-details">
+
+                            <div class="profile-field">
+
+                                <label>
+                                    Full Name
+                                </label>
+
+                                <input
+                                    id="profileFullName"
+                                    type="text"
+                                    placeholder="Your full name"
+                                >
+
+                            </div>
+
+
+                            <div class="profile-field">
+
+                                <label>
+                                    Email
+                                </label>
+
+                                <input
+                                    id="profileEmailInput"
+                                    type="email"
+                                    disabled
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <button class="primary-button">
+                            Save Profile
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ================================= -->
+                <!-- SETTINGS -->
+                <!-- ================================= -->
+
+                <section
+                    id="settings"
+                    class="dashboard-section"
+                >
+
+                    <div class="section-heading">
+
+                        <div>
+
+                            <p class="eyebrow">
+                                ACCOUNT SETTINGS
+                            </p>
+
+                            <h1>
+                                Settings
+                            </h1>
+
+                            <p>
+                                Manage your CareerCopilot preferences.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="settings-list">
+
+                        <div class="setting-item">
+
+                            <div>
+
+                                <h3>
+                                    Account
+                                </h3>
+
+                                <p>
+                                    Manage your account information.
+                                </p>
+
+                            </div>
+
+                            <button class="secondary-button">
+                                Manage
+                            </button>
+
+                        </div>
+
+
+                        <div class="setting-item">
+
+                            <div>
+
+                                <h3>
+                                    Notifications
+                                </h3>
+
+                                <p>
+                                    Control career reminders and updates.
+                                </p>
+
+                            </div>
+
+                            <label class="switch">
+
+                                <input
+                                    type="checkbox"
+                                    checked
+                                >
+
+                                <span class="slider"></span>
+
+                            </label>
+
+                        </div>
+
+
+                        <div class="setting-item danger-setting">
+
+                            <div>
+
+                                <h3>
+                                    Sign out
+                                </h3>
+
+                                <p>
+                                    Sign out of your CareerCopilot account.
+                                </p>
+
+                            </div>
+
+                            <button
+                                class="danger-button"
+                                onclick="logout()"
+                            >
+                                Logout
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+            </div>
+
+        </main>
+
+    </div>
+
+
+    <!-- ========================================= -->
+    <!-- MOBILE OVERLAY -->
+    <!-- ========================================= -->
+
+    <div
+        class="sidebar-overlay"
+        id="sidebarOverlay"
+        onclick="toggleSidebar()"
+    ></div>
+
+
+    <!-- ========================================= -->
+    <!-- FIREBASE / DASHBOARD JAVASCRIPT -->
+    <!-- ========================================= -->
+
+    <script
+        type="module"
+        src="dashboard.js"
+    ></script>
+
+</body>
+</html>
